@@ -1,0 +1,25 @@
+﻿<UserControl x:Class="Маяки.MainMenuUserControls.MainMenu"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Маяки.MainMenuUserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="6*"/>
+            <RowDefinition Height="9*"/>
+            <RowDefinition Height="2*"/>
+        </Grid.RowDefinitions>
+        <TextBlock  Text="Маяки" 
+                    FontSize="100" 
+                    FontFamily="Arial"
+                    Foreground="BlueViolet" 
+                    Grid.Row="0"
+                    HorizontalAlignment="Center" 
+                    VerticalAlignment="Bottom"/>
+        <ContentControl x:Name="gameMenu"
+                        Grid.Row="1"/>
+    </Grid>
+</UserControl>
