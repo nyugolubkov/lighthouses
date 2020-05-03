@@ -22,28 +22,25 @@ namespace Маяки
     /// </summary>
     public partial class MainWindow : Window
     {
-        private const string backGroundPath = @"..\..\Resources\Images\Waves.jpg";
-        private const string lightHousePath = @"..\..\Resources\Images\Lighthouse.png";
-
         public MainWindow()
         {
             InitializeComponent();
 
-            if (File.Exists(backGroundPath))
+            if (File.Exists(ConstValues.BackGroundPath))
             {
                 try
                 {
                     Background = new ImageBrush(new BitmapImage(
-                        new Uri(backGroundPath, UriKind.Relative)));
+                        new Uri(ConstValues.BackGroundPath, UriKind.Relative)));
                 }
                 catch(Exception) { }
             }
 
-            if (File.Exists(lightHousePath))
+            if (File.Exists(ConstValues.LightHousePath))
             {
                 try
                 {
-                    Icon = new BitmapImage(new Uri(lightHousePath, UriKind.Relative));
+                    Icon = new BitmapImage(new Uri(ConstValues.LightHousePath, UriKind.Relative));
                     lightHouse1.Source = Icon;
                     lightHouse2.Source = Icon;
                 }

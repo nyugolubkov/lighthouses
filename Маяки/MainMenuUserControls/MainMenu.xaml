@@ -12,9 +12,9 @@
             <RowDefinition Height="9*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <TextBlock  Text="Маяки" 
+        <TextBlock  Text="МАЯКИ" 
                     FontSize="100" 
-                    FontFamily="Arial"
+                    FontFamily="Century Gothic"
                     Foreground="BlueViolet" 
                     Grid.Row="0"
                     HorizontalAlignment="Center" 

@@ -5,12 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Маяки.GameWindow"
         mc:Ignorable="d"
-        Title="GameWindow" Height="500" Width="800">
+        Background="Aqua"
+        Title="Маяки" Height="500" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="1*"/>
-            <RowDefinition Height="4*"/>
-            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="13*"/>
+            <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="1*"/>
@@ -26,8 +27,8 @@
                 Grid.Row="0"
                 Margin="25"
                 Click="BackButton_Click"/>
-        <Border x:Name="border"
-                Grid.Column="1"
-                Grid.Row="1"/>
+        <ContentControl x:Name="viewModelControl"
+                        Grid.Row="1"
+                        Grid.Column="1"/>
     </Grid>
 </Window>

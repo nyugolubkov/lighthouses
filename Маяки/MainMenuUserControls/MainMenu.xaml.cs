@@ -23,7 +23,7 @@ namespace Маяки.MainMenuUserControls
         public MainMenu(object sender)
         {
             InitializeComponent();
-            gameMenu.Content = new PlayRules(sender, gameMenu);
+            gameMenu.Content = new PlayRules(sender);
         }
     }
 }

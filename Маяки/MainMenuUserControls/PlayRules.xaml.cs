@@ -21,24 +21,22 @@ namespace Маяки.MainMenuUserControls
     public partial class PlayRules : UserControl
     {
         private readonly ContentControl mainControl;
-        private readonly ContentControl control;
 
-        public PlayRules(object sender1, object sender2)
+        public PlayRules(object sender)
         {
             InitializeComponent();
 
-            mainControl = (ContentControl)sender1;
-            control = (ContentControl)sender2;
+            mainControl = (ContentControl)sender;
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e)
         {
-            control.Content = new GameMenu(mainControl);
+            mainControl.Content = new Levels(mainControl);
         }
 
         private void RulesButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("Правила игры...");
+            MessageBox.Show(ConstValues.Rules);
         }
     }
 }

@@ -1,0 +1,85 @@
+﻿<UserControl x:Class="Маяки.GameWindow.View"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Маяки.GameWindow"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="640">
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Style.Setters>
+                <Setter Property="FontSize" Value="40"/>
+                <Setter Property="FontWeight" Value="Bold"/>
+            </Style.Setters>
+        </Style>
+    </UserControl.Resources>
+    <Grid x:Name="MyGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <ItemsControl Grid.Column="1" 
+                      Grid.Row="0"
+                      ItemsSource="{Binding Cells}"
+                      HorizontalContentAlignment="Stretch"
+                      VerticalContentAlignment="Stretch">
+            <ItemsControl.Resources>
+                <local:CellConverter x:Key="CellConverter"/>
+            </ItemsControl.Resources>
+            <ItemsControl.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <UniformGrid Rows="10" Columns="10"/>
+                </ItemsPanelTemplate>
+            </ItemsControl.ItemsPanel>
+            <ItemsControl.ItemTemplate>
+                <DataTemplate DataType="{x:Type local:Cell}">
+                    <Border BorderBrush="Blue"
+                            BorderThickness="1.5"
+                            Background="White"
+                            MouseLeftButtonUp="Border_MouseLeftButtonUp">
+                        <Viewbox>
+                            <GroupBox HorizontalContentAlignment="Center" 
+                                      VerticalContentAlignment="Center">
+                                <GroupBox.Style>
+                                    <Style TargetType="GroupBox">
+                                        <Setter Property="Content" Value="{Binding Value, Converter={StaticResource CellConverter}}"/>
+                                        <Setter Property="Foreground" Value="Blue"/>
+                                        <Setter Property="BorderBrush" Value="Transparent"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Value}" Value="{x:Static local:CellValueEnum.None}">
+                                                <Setter Property="Content" Value="{x:Null}"/>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Value}" Value="{x:Static local:CellValueEnum.Lighthouse}">
+                                                <Setter Property="Content" Value="{Binding AmountOfLightedBoats}"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </GroupBox.Style>
+                            </GroupBox>
+                        </Viewbox>
+                    </Border>
+                </DataTemplate>
+            </ItemsControl.ItemTemplate>
+            <ItemsControl.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Control.VerticalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ItemsControl.ItemContainerStyle>
+        </ItemsControl>
+        <UniformGrid Grid.Row="1" Grid.Column="1"
+                     Rows="1" Columns="2">
+            <Button x:Name="checkButton"
+                    Content="Проверить"
+                    Click="CheckButton_Click"/>
+            <Button Content="Очистить поле"
+                    Command="{Binding RestartCommand}"/>
+        </UniformGrid>
+    </Grid>
+</UserControl>

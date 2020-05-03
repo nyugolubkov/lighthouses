@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,16 +18,39 @@ namespace Маяки.GameWindow
 {
     /// <summary>
     /// Логика взаимодействия для GameWindow.xaml
+    /// Окно, являющееся игровым полем, наследник класса Window
     /// </summary>
     public partial class GameWindow : Window
     {
         private readonly DispatcherTimer timer;
+        public DispatcherTimer Timer => timer;
 
-        private uint TimeNow { get; set; }
+        public uint TimeNow { get; private set; }
 
-        public GameWindow()
+        public GameWindow(DeskOfCells cells)
         {
             InitializeComponent();
+
+            if (File.Exists(ConstValues.LightHousePath))
+            {
+                try
+                {
+                    Icon = new BitmapImage(new Uri(ConstValues.LightHousePath, UriKind.Relative));
+                }
+                catch (Exception) { }
+            }
+
+
+            if (!cells.IsClear())
+            {
+                MessageBoxResult res = MessageBox.Show(ConstValues.ContinueLastGame,
+                    ConstValues.ContinueTitle, MessageBoxButton.YesNo);
+
+                if (res == MessageBoxResult.No)
+                {
+                    cells.Clear();
+                }
+            }
 
             timer = new DispatcherTimer();
             timer.Tick += new EventHandler(Timer_Tick);
@@ -35,6 +59,8 @@ namespace Маяки.GameWindow
 
             TimeNow = 0;
             timerTextBlock.Text = "0:00:00";
+
+            viewModelControl.Content = new View(cells);
         }
 
         private void Timer_Tick(object sender, EventArgs e)

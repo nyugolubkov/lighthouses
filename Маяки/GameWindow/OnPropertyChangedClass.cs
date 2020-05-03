@@ -4,11 +4,13 @@ using System.ComponentModel;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Runtime.Serialization;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Маяки.GameWindow
 {
+    [DataContract]
     public class OnPropertyChangedClass : INotifyPropertyChanged
     {
         /// <summary>Событие для извещения об изменения свойства</summary>
