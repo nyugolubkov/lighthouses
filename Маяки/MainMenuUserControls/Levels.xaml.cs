@@ -18,6 +18,8 @@ namespace Маяки.MainMenuUserControls
 {
     /// <summary>
     /// Логика взаимодействия для Levels.xaml
+    /// Элемент управления, на котором распложено меню выбора уровня,
+    /// наследник класса UserControl
     /// </summary>
     public partial class Levels : UserControl
     {

@@ -17,6 +17,8 @@ namespace Маяки.MainMenuUserControls
 {
     /// <summary>
     /// Логика взаимодействия для MainMenu.xaml
+    /// Элемент управления, показывающий главное меню программы, 
+    /// наследник класса UserControl
     /// </summary>
     public partial class MainMenu : UserControl
     {

@@ -17,6 +17,9 @@ namespace Маяки.MainMenuUserControls
 {
     /// <summary>
     /// Логика взаимодействия для PlayRules.xaml
+    /// Элемент управления, на котором расположены кнопки 
+    /// "Играть" и "Правила игры" с главного меню, 
+    /// наследник класса UserControl
     /// </summary>
     public partial class PlayRules : UserControl
     {

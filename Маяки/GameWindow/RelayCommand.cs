@@ -7,6 +7,9 @@ using System.Windows.Input;
 
 namespace Маяки.GameWindow
 {
+    /// <summary>
+    /// Класс, реализующий интерфейс ICommand
+    /// </summary>
     public class RelayCommand : ICommand
     {
         public event EventHandler CanExecuteChanged;

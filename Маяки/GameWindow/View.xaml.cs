@@ -17,6 +17,8 @@ namespace Маяки.GameWindow
 {
     /// <summary>
     /// Логика взаимодействия для View.xaml
+    /// Элемент управления, содержащий игровое поле и кнопки 
+    /// "Проверить" и "Очистить поле", наследуется от класса UserControl
     /// </summary>
     public partial class View : UserControl
     {

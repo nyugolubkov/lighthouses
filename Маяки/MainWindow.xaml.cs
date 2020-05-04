@@ -19,6 +19,7 @@ namespace Маяки
 {
     /// <summary>
     /// Логика взаимодействия для MainWindow.xaml
+    /// Окно с главным меню приложения, наследник класса Window
     /// </summary>
     public partial class MainWindow : Window
     {

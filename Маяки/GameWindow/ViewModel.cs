@@ -11,6 +11,10 @@ using System.Windows;
 
 namespace Маяки.GameWindow
 {
+    /// <summary>
+    /// Класс, содержащий все нужные для основного процесса игры данные и методы,
+    /// наследуется от класса OnPropertyChangedClass
+    /// </summary>
     public class ViewModel : OnPropertyChangedClass
     {
         Model model;

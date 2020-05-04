@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace Маяки
 {
+    /// <summary>
+    /// Статический класс, хранящий константные значения
+    /// </summary>
     public static class ConstValues
     {
         public const string BackGroundPath = @"..\..\Resources\Images\Waves.jpg";

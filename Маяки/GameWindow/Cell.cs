@@ -17,10 +17,16 @@ namespace Маяки.GameWindow
     public class Cell : OnPropertyChangedClass
     {
         [DataMember]
-        CellValueEnum _value;
+        private CellValueEnum _value;
         [DataMember]
         private uint amount;
 
+        /// <summary>
+        /// Конструктор, инициализирующий значение, строку и столбец клетки
+        /// </summary>
+        /// <param name="row">Номер строки</param>
+        /// <param name="column">Номер столбца</param>
+        /// <param name="value">Значение клетки</param>
         public Cell(int row, int column, CellValueEnum value = CellValueEnum.None)
         {
             _value = value;

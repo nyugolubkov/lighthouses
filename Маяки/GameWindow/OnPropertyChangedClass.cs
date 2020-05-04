@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace Маяки.GameWindow
 {
+    /// <summary>
+    /// Класс, реализующий интерфейс INotifyPropertyChanged
+    /// </summary>
     [DataContract]
     public class OnPropertyChangedClass : INotifyPropertyChanged
     {
