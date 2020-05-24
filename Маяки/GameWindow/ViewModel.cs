@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
+﻿using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization.Json;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace Маяки.GameWindow
@@ -20,7 +15,13 @@ namespace Маяки.GameWindow
         Model model;
         private IEnumerable<Cell> _cells;
         public RelayCommand RestartCommand { get; }
+        public RelayCommand RulesCommand { get; }
+        public Model Mod => model;
 
+        /// <summary>
+        /// Конструктор, инициализирующий компоненты данного класса
+        /// </summary>
+        /// <param name="allCells">Игровое поле</param>
         public ViewModel(DeskOfCells allCells)
         {
             model = new Model(allCells);
@@ -36,8 +37,12 @@ namespace Маяки.GameWindow
             Cells = cells;
 
             RestartCommand = new RelayCommand(par => model.Cells.Clear());
+            RulesCommand = new RelayCommand(par => MessageBox.Show(ConstValues.Rules, "Правила игры"));
         }
 
+        /// <summary>
+        /// Метод обработчик события смены состояния модели
+        /// </summary>
         private void Model_PropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             string propertyName = e.PropertyName;
@@ -45,23 +50,22 @@ namespace Маяки.GameWindow
                 OnPropertyChanged(propertyName);
         }
 
-
-        public void Save(string path)
+        /// <summary>
+        /// Метод, сохраняющий прогресс выполняемого поля
+        /// </summary>
+        /// <param name="path">Путь файла</param>
+        /// <param name="timeStart">Нынешнее время</param>
+        public void Save(string path, uint timeStart)
         {
-            DataContractJsonSerializer ser = new 
-                DataContractJsonSerializer(typeof(List<IEnumerable<Cell>>));
+            model.Cells.TimeStart = timeStart;
 
-            List <IEnumerable<Cell>> serList = new List<IEnumerable<Cell>>();
-
-            for (int i = 0; i < 10; i++)
-            {
-                serList.Add(Cells.Skip(10 * i).Take(10));
-            }
+            DataContractJsonSerializer ser = new
+                DataContractJsonSerializer(typeof(DeskOfCells));
 
             using (FileStream fs = new FileStream(path + '\\' + model.Cells.Name + ".json", 
                 FileMode.Create))
             {
-                ser.WriteObject(fs, serList);
+                ser.WriteObject(fs, model.Cells);
             }
         }
 
@@ -75,6 +79,10 @@ namespace Маяки.GameWindow
             }
         }
 
+        /// <summary>
+        /// Метод, проверяющий, правильно ли решена головоломка
+        /// </summary>
+        /// <returns>Результат проверки</returns>
         public bool CheckIfRight() => model.Cells.Check();
     }
 }

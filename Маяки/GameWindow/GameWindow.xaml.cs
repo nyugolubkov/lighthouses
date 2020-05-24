@@ -1,17 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 
 namespace Маяки.GameWindow
@@ -27,7 +17,13 @@ namespace Маяки.GameWindow
 
         public uint TimeNow { get; private set; }
 
-        public GameWindow(DeskOfCells cells)
+        /// <summary>
+        /// Конструктор, инициализирующий компоненты класса,
+        /// а также запускает отсчет таймера
+        /// </summary>
+        /// <param name="cells">Класс - игровое поле</param>
+        /// <param name="isGenerated">Сгенерированно ли поле</param>
+        public GameWindow(DeskOfCells cells, bool isGenerated)
         {
             InitializeComponent();
 
@@ -40,7 +36,6 @@ namespace Маяки.GameWindow
                 catch (Exception) { }
             }
 
-
             if (!cells.IsClear())
             {
                 MessageBoxResult res = MessageBox.Show(ConstValues.ContinueLastGame,
@@ -49,7 +44,15 @@ namespace Маяки.GameWindow
                 if (res == MessageBoxResult.No)
                 {
                     cells.Clear();
+                    cells.TimeStart = 0;
+                    cells.AmountOfTrials = (cells.Difficulty == LevelDifficultyEnum.Beginner)
+                        ? 5 : ((cells.Difficulty == LevelDifficultyEnum.Improving)
+                        ? 4 : 3);
                 }
+            }
+            else
+            {
+                cells.TimeStart = 0;
             }
 
             timer = new DispatcherTimer();
@@ -57,12 +60,15 @@ namespace Маяки.GameWindow
             timer.Interval = new TimeSpan(0, 0, 1);
             timer.Start();
 
-            TimeNow = 0;
+            TimeNow = cells.TimeStart;
             timerTextBlock.Text = "0:00:00";
 
-            viewModelControl.Content = new View(cells);
+            viewModelControl.Content = new View(cells, isGenerated);
         }
 
+        /// <summary>
+        /// Метод обработчик события тика таймера
+        /// </summary>
         private void Timer_Tick(object sender, EventArgs e)
         {
             TimeNow++;
@@ -75,6 +81,9 @@ namespace Маяки.GameWindow
             timerTextBlock.Text = $"{hour}:{minute}:{second}";
         }
 
+        /// <summary>
+        /// Метод обработчик события нажатия на кнопку возврата в главное меню
+        /// </summary>
         private void BackButton_Click(object sender, RoutedEventArgs e)
         {
             MainWindow window = new MainWindow();

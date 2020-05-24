@@ -1,11 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Маяки.GameWindow
 {
@@ -49,7 +46,6 @@ namespace Маяки.GameWindow
         public int Row { get; private set; }
         [DataMember]
         public int Column { get; private set; }
-        public bool IsLightHouse => Value == CellValueEnum.Lighthouse;
         public uint AmountOfLightedBoats
         {
             get => amount;
@@ -60,13 +56,18 @@ namespace Маяки.GameWindow
             }
         }
 
+        /// <summary>
+        /// Десериализует все базовые поля из соответствующего хранилища.
+        /// Возвращает list найденных полей.
+        /// </summary>
+        /// <returns>list найденных полей</returns>
         public static List<DeskOfCells> Deserialize()
         {
             List<DeskOfCells> blockOfCells = new List<DeskOfCells>();
 
             string[] filesPath = Directory.GetFiles(ConstValues.LevelsDirectoryPath);
 
-            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(List<List<Cell>>));
+            DataContractJsonSerializer ser = new DataContractJsonSerializer(typeof(DeskOfCells));
 
             foreach (string path in filesPath)
             {
@@ -74,40 +75,18 @@ namespace Маяки.GameWindow
                 {
                     using (FileStream fs = new FileStream(path, FileMode.Open))
                     {
-                        List<List<Cell>> cells = (List<List<Cell>>)ser.ReadObject(fs);
+                        DeskOfCells cells = (DeskOfCells)ser.ReadObject(fs);
 
-                        blockOfCells.Add(Cell.ListToArray(cells, path));
+                        if (!cells.IsCorrect())
+                            throw new ArgumentException();
+
+                        blockOfCells.Add(cells);
                     }
                 }
                 catch (Exception) { }
             }
 
             return blockOfCells;
-        }
-
-        public static DeskOfCells ListToArray(List<List<Cell>> cells, string path)
-        {
-            if (cells.Count != 10)
-                throw new ArgumentException("Wrong amount of rows!");
-
-            string[] arrCellsName = path.Split(new char[] { '\\', '/' },
-                StringSplitOptions.RemoveEmptyEntries);
-            string name = arrCellsName[arrCellsName.Length - 1].Split('.')[0];
-
-            DeskOfCells arrCells = new DeskOfCells(name);
-
-            for (int i = 0; i < 10; i++)
-            {
-                if (cells[i].Count != 10)
-                    throw new ArgumentException("Wrong amount of columns!");
-
-                for (int j = 0; j < 10; j++)
-                {
-                    arrCells[i, j] = cells[i][j];
-                }
-            }
-
-            return arrCells;
         }
     }
 }

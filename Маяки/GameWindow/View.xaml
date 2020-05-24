@@ -5,12 +5,13 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Маяки.GameWindow"
              mc:Ignorable="d"
-             d:DesignHeight="450" d:DesignWidth="640">
+             d:DesignHeight="450" d:DesignWidth="600">
     <UserControl.Resources>
         <Style TargetType="TextBlock">
             <Style.Setters>
-                <Setter Property="FontSize" Value="40"/>
                 <Setter Property="FontWeight" Value="Bold"/>
+                <Setter Property="Foreground" Value="Red"/>
+                <Setter Property="FontSize" Value="40"/>
             </Style.Setters>
         </Style>
     </UserControl.Resources>
@@ -19,13 +20,31 @@
             <ColumnDefinition Width="3*"/>
             <ColumnDefinition Width="10*"/>
             <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="4*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="3*"/>
             <RowDefinition Height="12*"/>
             <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
-        <ItemsControl Grid.Column="1" 
-                      Grid.Row="0"
+        <TextBlock x:Name="miniRulesTextBlock"
+                   Grid.Row="1" Grid.Column="2"
+                   Grid.ColumnSpan="2"
+                   VerticalAlignment="Top" 
+                   Foreground="Gray"
+                   FontSize="10" 
+                   HorizontalAlignment="Left"
+                   Margin="5,0,0,0"/>
+        <TextBlock Grid.Row="0" Grid.Column="1"
+                   Text="{Binding Mod.Cells.Name}"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Foreground="Blue"/>
+        <ItemsControl x:Name="itemsControl"
+                      Grid.Column="1" 
+                      Grid.Row="1"
                       ItemsSource="{Binding Cells}"
                       HorizontalContentAlignment="Stretch"
                       VerticalContentAlignment="Stretch">
@@ -34,7 +53,9 @@
             </ItemsControl.Resources>
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <UniformGrid Rows="10" Columns="10"/>
+                    <UniformGrid x:Name="cellsGrid"
+                                 Rows="{Binding FieldSize}" 
+                                 Columns="{Binding FieldSize}"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
@@ -49,7 +70,6 @@
                                 <GroupBox.Style>
                                     <Style TargetType="GroupBox">
                                         <Setter Property="Content" Value="{Binding Value, Converter={StaticResource CellConverter}}"/>
-                                        <Setter Property="Foreground" Value="Blue"/>
                                         <Setter Property="BorderBrush" Value="Transparent"/>
                                         <Style.Triggers>
                                             <DataTrigger Binding="{Binding Value}" Value="{x:Static local:CellValueEnum.None}">
@@ -73,13 +93,19 @@
                 </Style>
             </ItemsControl.ItemContainerStyle>
         </ItemsControl>
-        <UniformGrid Grid.Row="1" Grid.Column="1"
-                     Rows="1" Columns="2">
+        <UniformGrid Grid.Row="2" Grid.Column="1"
+                     Rows="1" Columns="3">
             <Button x:Name="checkButton"
                     Content="Проверить"
                     Click="CheckButton_Click"/>
             <Button Content="Очистить поле"
                     Command="{Binding RestartCommand}"/>
+            <Button Content="Правила игры"
+                    Command="{Binding RulesCommand}"/>
         </UniformGrid>
+        <TextBlock x:Name="trialsTextBlock"
+                   Grid.Row="3" Grid.Column="1"
+                   FontSize="15"
+                   Foreground="Black"/>
     </Grid>
 </UserControl>

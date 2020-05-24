@@ -1,0 +1,39 @@
+﻿<UserControl x:Class="Маяки.MainMenuUserControls.ChooseDifficulty"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Маяки.MainMenuUserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="backButton" 
+                Content="Назад" 
+                Grid.Row="5"
+                Click="BackButton_Click"/>
+        <TextBlock Grid.Row="1"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Center"
+                   Text="Выберите сложность:"
+                   Foreground="Blue"
+                   FontSize="30"/>
+        <Button Grid.Row="2"
+                Content="Новичок"
+                Click="Button_Click"/>
+        <Button Grid.Row="3" 
+                Content="Совершенствующийся"
+                Click="Button_Click"/>
+        <Button Grid.Row="4" 
+                Content="Опытный игрок"
+                Click="Button_Click"/>
+    </Grid>
+</UserControl>

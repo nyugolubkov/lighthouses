@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Маяки.GameWindow
@@ -16,6 +12,9 @@ namespace Маяки.GameWindow
         private readonly Func<object, bool> _canExecute;
         private readonly Action<object> _onExecute;
 
+        /// <summary>
+        /// Конструктор, инициализирующий компоненты класса
+        /// </summary>
         public RelayCommand(Action<object> execute, 
             Func<object, bool> canExecute = null)
         {
@@ -23,9 +22,15 @@ namespace Маяки.GameWindow
             _canExecute = canExecute;
         }
 
+        /// <summary>
+        /// Определяет, может ли данная команда выполняться в ее текущем состоянии
+        /// </summary>
         public bool CanExecute(object parameter)
              => _canExecute == null ? true : _canExecute.Invoke(parameter);
 
+        /// <summary>
+        /// Вызывает метод, приписанной к данной комманде
+        /// </summary>
         public void Execute(object parameter) => _onExecute?.Invoke(parameter);
     }
 }

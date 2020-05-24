@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Маяки.GameWindow
 {
@@ -14,20 +10,16 @@ namespace Маяки.GameWindow
     {
         readonly DeskOfCells _cells;
 
+        /// <summary>
+        /// Конструктор, инициализирующий элементы класса
+        /// </summary>
+        /// <param name="cells">Игровое поле</param>
         public Model(DeskOfCells cells)
         {
-            if (cells.Length != 144)
+            if (!cells.IsCorrect())
                 throw new ArgumentException("Wrong cells Length!");
 
-            _cells = new DeskOfCells(cells.Name);
-
-            for (int i = 0; i < 10; i++)
-            {
-                for (int j = 0; j < 10; j++)
-                {
-                    _cells[i, j] = cells[i, j];
-                }
-            }
+            _cells = cells;
         }
 
         public DeskOfCells Cells => _cells;

@@ -12,13 +12,17 @@
             <RowDefinition Height="3*"/>
             <RowDefinition Height="3*"/>
         </Grid.RowDefinitions>
-        <Button x:Name="startButton" 
+        <Button x:Name="gameButton" 
                 Content="Играть" 
+                Grid.Row="0"
+                Click="GameButton_Click"/>
+        <Button x:Name="recordsButton"
+                Content="Достижения" 
                 Grid.Row="1"
-                Click="StartButton_Click"/>
-        <Button x:Name="rulesButton" 
-                Content="Правила игры" 
+                Click="RecordsButton_Click"/>
+        <Button x:Name="infoButton" 
+                Content="О программе" 
                 Grid.Row="2"
-                Click="RulesButton_Click"/>
+                Click="InfoButton_Click"/>
     </Grid>
 </UserControl>

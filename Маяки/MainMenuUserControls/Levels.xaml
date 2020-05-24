@@ -23,7 +23,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Label FontSize="18"
-                           Content="{Binding Path=Name}"
+                           Content="{Binding Path=Info}"
                            Margin="0"
                            MouseDoubleClick="Label_MouseDoubleClick"/>
                 </DataTemplate>

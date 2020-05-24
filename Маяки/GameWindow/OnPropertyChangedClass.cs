@@ -5,8 +5,6 @@ using System.Linq;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Маяки.GameWindow
 {
@@ -16,10 +14,14 @@ namespace Маяки.GameWindow
     [DataContract]
     public class OnPropertyChangedClass : INotifyPropertyChanged
     {
-        /// <summary>Событие для извещения об изменения свойства</summary>
+        /// <summary>
+        /// Событие для извещения об изменения свойства
+        /// </summary>
         public event PropertyChangedEventHandler PropertyChanged;
 
-        /// <summary>Метод для вызова события извещения об изменении свойства</summary>
+        /// <summary>
+        /// Метод для вызова события извещения об изменении свойства
+        /// </summary>
         /// <param name="prop">Изменившееся свойство или список свойств через разделители "\\/\r \n()\"\'-"</param>
         public void OnPropertyChanged([CallerMemberName]string prop = "")
         {
@@ -30,7 +32,9 @@ namespace Маяки.GameWindow
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(_prp));
         }
 
-        /// <summary>Метод для вызова события извещения об изменении списка свойств</summary>
+        /// <summary>
+        /// Метод для вызова события извещения об изменении списка свойств
+        /// </summary>
         /// <param name="propList">Последовательность имён свойств</param>
         public void OnPropertyChanged(IEnumerable<string> propList)
         {
@@ -38,7 +42,9 @@ namespace Маяки.GameWindow
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(_prp));
         }
 
-        /// <summary>Метод для вызова события извещения об изменении списка свойств</summary>
+        /// <summary>
+        /// Метод для вызова события извещения об изменении списка свойств
+        /// </summary>
         /// <param name="propList">Последовательность свойств</param>
         public void OnPropertyChanged(IEnumerable<PropertyInfo> propList)
         {
@@ -46,7 +52,9 @@ namespace Маяки.GameWindow
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(_prp.Name));
         }
 
-        /// <summary>Метод для вызова события извещения об изменении всех свойств</summary>
+        /// <summary>
+        /// Метод для вызова события извещения об изменении всех свойств
+        /// </summary>
         public void OnAllPropertyChanged() => OnPropertyChanged(GetType().GetProperties());
     }
 }

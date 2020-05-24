@@ -1,0 +1,36 @@
+﻿<UserControl x:Class="Маяки.MainMenuUserControls.ChooseField"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Маяки.MainMenuUserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+        </Grid.RowDefinitions>
+        <Button x:Name="backButton" 
+                Content="Назад" 
+                Grid.Row="5"
+                Click="BackButton_Click"/>
+        <Button Grid.Row="1"
+                Content="6x6"
+                Click="Button_Click"/>
+        <Button Grid.Row="2"
+                Content="8x8"
+                Click="Button_Click"/>
+        <Button Grid.Row="3" 
+                Content="10x10"
+                Click="Button_Click"/>
+        <Button Grid.Row="4" 
+                Content="12x12"
+                Click="Button_Click"/>
+    </Grid>
+</UserControl>

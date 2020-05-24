@@ -1,45 +1,50 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
+﻿using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Маяки.MainMenuUserControls
 {
     /// <summary>
     /// Логика взаимодействия для PlayRules.xaml
-    /// Элемент управления, на котором расположены кнопки 
-    /// "Играть" и "Правила игры" с главного меню, 
-    /// наследник класса UserControl
+    /// Элемент управления, на котором расположены кнопки главного меню приложения
     /// </summary>
     public partial class PlayRules : UserControl
     {
         private readonly ContentControl mainControl;
+        private readonly ContentControl control;
 
-        public PlayRules(object sender)
+        /// <summary>
+        /// Конструктор, инициализирующий компоненты этого элемента управления
+        /// </summary>
+        public PlayRules(object sender1, object sender2)
         {
             InitializeComponent();
 
-            mainControl = (ContentControl)sender;
+            mainControl = (ContentControl)sender1;
+            control = (ContentControl)sender2;
         }
 
-        private void StartButton_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Метод обработчик события нажатия на кнопку начала игры
+        /// </summary>
+        private void GameButton_Click(object sender, RoutedEventArgs e)
         {
-            mainControl.Content = new Levels(mainControl);
+            control.Content = new GameMenu(mainControl);
         }
 
-        private void RulesButton_Click(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Метод обработчик события нажатия на кнопку показа информации о программе
+        /// </summary>
+        private void InfoButton_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(ConstValues.Rules);
+            mainControl.Content = new Info(mainControl);
+        }
+
+        /// <summary>
+        /// Метод обработчик события нажатия на кнопку показа рекордов игры
+        /// </summary>
+        private void RecordsButton_Click(object sender, RoutedEventArgs e)
+        {
+            mainControl.Content = new Records(mainControl);
         }
     }
 }

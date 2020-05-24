@@ -82,6 +82,22 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="MainMenuUserControls\ChooseDifficulty.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainMenuUserControls\ChooseField.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainMenuUserControls\GameMenu.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainMenuUserControls\Info.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="MainMenuUserControls\Levels.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -91,6 +107,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="MainMenuUserControls\PlayRules.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="MainMenuUserControls\Records.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -106,10 +126,12 @@
     <Compile Include="GameWindow\Cell.cs" />
     <Compile Include="GameWindow\CellValueEnum.cs" />
     <Compile Include="GameWindow\DeskOfCells.cs" />
+    <Compile Include="GameWindow\FieldGenerator.cs" />
     <Compile Include="GameWindow\GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="GameWindow\CellConverter.cs" />
+    <Compile Include="GameWindow\LevelDifficultyEnum.cs" />
     <Compile Include="GameWindow\Model.cs" />
     <Compile Include="GameWindow\OnPropertyChangedClass.cs" />
     <Compile Include="GameWindow\RelayCommand.cs" />
@@ -117,6 +139,18 @@
       <DependentUpon>View.xaml</DependentUpon>
     </Compile>
     <Compile Include="GameWindow\ViewModel.cs" />
+    <Compile Include="MainMenuUserControls\ChooseDifficulty.xaml.cs">
+      <DependentUpon>ChooseDifficulty.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenuUserControls\ChooseField.xaml.cs">
+      <DependentUpon>ChooseField.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenuUserControls\GameMenu.xaml.cs">
+      <DependentUpon>GameMenu.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenuUserControls\Info.xaml.cs">
+      <DependentUpon>Info.xaml</DependentUpon>
+    </Compile>
     <Compile Include="MainMenuUserControls\Levels.xaml.cs">
       <DependentUpon>Levels.xaml</DependentUpon>
     </Compile>
@@ -125,6 +159,9 @@
     </Compile>
     <Compile Include="MainMenuUserControls\PlayRules.xaml.cs">
       <DependentUpon>PlayRules.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenuUserControls\Records.xaml.cs">
+      <DependentUpon>Records.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
@@ -149,6 +186,36 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Levels\Поле 01.json" />
+    <None Include="Levels\Поле 02.json" />
+    <None Include="Levels\Поле 03.json" />
+    <None Include="Levels\Поле 04.json" />
+    <None Include="Levels\Поле 05.json" />
+    <None Include="Levels\Поле 06.json" />
+    <None Include="Levels\Поле 07.json" />
+    <None Include="Levels\Поле 08.json" />
+    <None Include="Levels\Поле 09.json" />
+    <None Include="Levels\Поле 10.json" />
+    <None Include="Levels\Поле 11.json" />
+    <None Include="Levels\Поле 12.json" />
+    <None Include="Levels\Поле 13.json" />
+    <None Include="Levels\Поле 14.json" />
+    <None Include="Levels\Поле 15.json" />
+    <None Include="Levels\Поле 16.json" />
+    <None Include="Levels\Поле 17.json" />
+    <None Include="Levels\Поле 18.json" />
+    <None Include="Levels\Поле 19.json" />
+    <None Include="Levels\Поле 20.json" />
+    <None Include="Levels\Поле 21.json" />
+    <None Include="Levels\Поле 22.json" />
+    <None Include="Levels\Поле 23.json" />
+    <None Include="Levels\Поле 24.json" />
+    <None Include="Levels\Поле 25.json" />
+    <None Include="Levels\Поле 26.json" />
+    <None Include="Levels\Поле 27.json" />
+    <None Include="Levels\Поле 28.json" />
+    <None Include="Levels\Поле 29.json" />
+    <None Include="Levels\Поле 30.json" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -163,13 +230,15 @@
     <Resource Include="Resources\Images\Waves.jpg" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\Boat.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Resources\Images\UnAvail.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources\Images\Crosses.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Boat.png" />
+    <Content Include="Resources\Sounds\GameOver.wav" />
+    <Content Include="Resources\Sounds\Win.wav" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
